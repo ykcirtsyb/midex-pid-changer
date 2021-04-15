@@ -21,8 +21,28 @@ Then [@sgorpi midex8 Linux driver][driver] should recognize it.
 
 For other options choose `-h/--help` switch.
 
+## Original midex driver modifications
+
+For proper functionality it is necessary to modify original code of [midex.c] as follows:
+
+```cpp
+
+#define SB_MIDEX_VID 0x0a4e
+#define SB_MIDEX8_PID 0x1001
+
+/*******************************************************************
+ * Type definitions
+ *******************************************************************/
+
+static struct usb_device_id id_table[] = {
+	{ USB_DEVICE(SB_MIDEX_VID, SB_MIDEX8_PID) },
+	{ },
+};
+
+```
 
 
 [//]: # (links)
 
 [driver]: <https://github.com/sgorpi/midex8>
+[midex.c]: <https://github.com/sgorpi/midex8/blob/master/src/kernel/sound/usb/midex/midex.c>
